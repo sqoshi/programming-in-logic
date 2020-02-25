@@ -4,10 +4,9 @@ on(d,b).
 on(e,d).
 
 above(X, Y) :-
-     on(Y,X).
+     on(X,Y).
 
 above(X, Y) :-
-    above(X,Z),
-    above(Z,Y),
-    \+ (on(X,Y)).
+    on(Z,Y),
+    above(X,Z).
 
