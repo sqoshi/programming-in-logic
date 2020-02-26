@@ -1,0 +1,12 @@
+on(b,a).
+on(c,b).
+on(d,b).
+on(e,d).
+
+above(X, Y) :-
+     on(X,Y).
+
+above(X, Y) :-
+    above(Z,Y),
+    above(X,Z).
+
