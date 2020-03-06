@@ -1,0 +1,7 @@
+equal(X,Y) :-
+    X=Y.
+not_equal(X,Y) :-
+    X\=Y.
+
+deleteLast([X|Xs],Ys):-
+
