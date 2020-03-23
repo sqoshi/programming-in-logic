@@ -18,6 +18,19 @@ czesciowy_porzadek :- przechodnia(), antysymetryczna(), zwrotna().
 equal(X,Y) :-
     X is Y.
 
+%przechodniosc  :
+%zamiana implikacji na alternatywe:
+%
+%    [ xRy i yRz => xRz  ]<=> [ not(xRy i yRz) lub xRz ],
+%
+%i dalej zaprzeczenie i zamiana alternatywy na koniunkcje z de Morgana
+%
+%    [ not(xRy i yRz) lub xRz ] <=> not[(xRy i yRz ) i not(xRz)]
+%
+%i teraz można pominąć nawiasy wewnątrz więc :
+%not[xRy i yRz  i not(xRz)]
+%
+%    not(le(X,Y),le(Y,Z),not(le(X,Z))).
 przechodnia() :-
     not((
     (le(X,Y)),
@@ -25,6 +38,16 @@ przechodnia() :-
     not(le(X,Z))
     )).
 
+%antysymetryczna:
+%znowu,
+%
+%    [ xRy i yRx => x = y ] <=> [ not(xRy i yRx) lub x=y ]
+%
+%
+%i de Morgana, bo nie chcę alternatywy
+%
+%    [ not(xRy i yRx) lub x=y ] <=> not[ (xRy i yRx) i not( x=y) ]
+%
 antysymetryczna() :-
     not((
         le(X,Y),
@@ -32,8 +55,10 @@ antysymetryczna() :-
         not(equal(X,Y))
     )).
 
+%zwrotna() :-
+%    not(
+%        (not(le(X,_)),not(le(_,X)));
+%        le(X,X)
+%       ).
 zwrotna() :-
-    not(
-        (not(le(X,_)),not(le(_,X)));
-        le(X,X)
-       ).
+    not( (le(X,Y),le(Y,X),Y \= X)).

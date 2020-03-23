@@ -27,13 +27,16 @@ siostra(X,Y) :-
     (jest_synem(Y);jest_corka(Y)),
     jest_corka(X),
     rodzic(Z,X),
-    rodzic(Z,Y).
+    rodzic(Z,Y),
+    X\=Y.
 
 dziadek(X,Y) :-
+    mezczyzna(X),
     rodzic(X,Z),
     rodzic(Z,Y).
 
 rodzenstwo(X,Y) :-
+    X\=Y,
     rodzic(Z,X),
     rodzic(Z,Y).
 
